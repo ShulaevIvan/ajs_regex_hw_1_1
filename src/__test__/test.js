@@ -24,3 +24,11 @@ test('test func validateUsername', () => {
   const badUsername = new Validator('test-userName&&').validateUsername();
   expect(badUsername).toBeFalsy();
 });
+test('test func validateUsername', () => {
+  const badUsername = new Validator('12345test-userName&&').validateUsername();
+  expect(badUsername).toBeFalsy();
+});
+test('test func validateUsername', () => {
+  const badUsername = new Validator('__test-userName&&').validateUsername();
+  expect(badUsername).toBeFalsy();
+});

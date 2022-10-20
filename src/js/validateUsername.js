@@ -5,13 +5,19 @@ export default class Validator {
 
   validateUsername() {
     const test = String(this.userName);
-    const pattern = /^[a-z0-9_.-]+$/i;
-    return pattern.test(test);
+    const pattern = /^[^\d_-][\w-]*[^\d_-]$/i;
+    const pattern2 = /\d{4,}/i;
+    if (pattern.test(test) && !pattern2.test(test)) {
+      return true;
+    }
+    return false;
   }
 }
 const goodUsername = new Validator('test-userName');
 const badUsername2 = new Validator('test@-userName');
-const badUsername3 = new Validator('!@test-userName');
+const badUsername3 = new Validator('123testuserName');
+const badUsername4 = new Validator('_testuserName');
 goodUsername.validateUsername();
 badUsername2.validateUsername();
 badUsername3.validateUsername();
+badUsername4.validateUsername();
